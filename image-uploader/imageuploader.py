@@ -1,4 +1,4 @@
-import os
+import os, random
 from flask import Flask, url_for, render_template, redirect, \
                 request, send_from_directory, flash
 from werkzeug.utils import secure_filename
@@ -13,7 +13,7 @@ app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 
 @app.route("/")
 def images():
-    return render_template('layout.html')
+    return render_template('images.html', random_image=getRandomImage())
 
 @app.route("/upload", methods=['GET', 'POST'])
 def upload():
@@ -39,6 +39,12 @@ def uploaded_file(filename):
             os.path.join(app.instance_path,
                             app.config['UPLOAD_FOLDER']), filename)
 
+@app.route('/uploads/get/random')
+def getRandomImage():
+    upload_path = os.path.join(app.instance_path,
+                    app.config['UPLOAD_FOLDER'])
+    files = os.listdir(upload_path)
+    return url_for('uploaded_file', filename=files[random.randint(0,len(files)-1)] )
 
 def save_file(file, filename):
     upload_path = os.path.join(app.instance_path,

@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block title %}Images{% endblock %}
+{% block content %}
+  <h1>Let's see the images</h1>
+  <div id="image-frame">
+    <img src="{{random_image}}" alt="random image from the server"/ />
+  </div>
+{% endblock %}
