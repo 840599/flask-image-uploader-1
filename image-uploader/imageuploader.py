@@ -34,7 +34,6 @@ def upload():
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-    print(app.instance_path)
     return send_from_directory(
             os.path.join(app.instance_path,
                             app.config['UPLOAD_FOLDER']), filename)
@@ -44,7 +43,11 @@ def getRandomImage():
     upload_path = os.path.join(app.instance_path,
                     app.config['UPLOAD_FOLDER'])
     files = os.listdir(upload_path)
-    return url_for('uploaded_file', filename=files[random.randint(0,len(files)-1)] )
+    if len(files):
+        filename = files[random.randint(0,len(files)-1)]
+    else:
+        filename = ""
+    return url_for('uploaded_file', filename=filename )
 
 def save_file(file, filename):
     upload_path = os.path.join(app.instance_path,

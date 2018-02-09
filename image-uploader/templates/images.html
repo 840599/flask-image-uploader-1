@@ -3,6 +3,10 @@
 {% block content %}
   <h1>Let's see the images</h1>
   <div id="image-frame">
-    <img src="{{random_image}}" alt="random image from the server"/ />
+    {% if random_image == '/uploads/' %}
+      I have no image, <a href="{{ url_for('upload') }}">upload the first one</a>.
+    {% else %}
+      <img src="{{random_image}}" alt="random image from the server" />
+    {% endif %}
   </div>
 {% endblock %}
