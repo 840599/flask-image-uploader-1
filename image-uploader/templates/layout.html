@@ -9,10 +9,10 @@
 <body>
   <nav id="nav-bar">
     <div>
-      <a href="{{ url_for('images') }}">Images</a>
+      <a id="page-images" href="{{ url_for('images') }}">Images</a>
     </div>
     <div>
-      <a href="{{ url_for('upload') }}">Upload</a>
+      <a id="page-upload" href="{{ url_for('upload') }}">Upload</a>
     </div>
   </nav>
 
@@ -28,6 +28,7 @@
 
   <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  CURRENT_PAGE_ID="{% block pageid %}{% endblock %}"
   </script>
   {% if debug %}
   <script type=text/javascript src="{{
@@ -36,6 +37,8 @@
   <script type=text/javascript src="{{
   url_for('static', filename='jquery-3.3.1.min.js') }}"></script>
   {% endif %}
+  <script type=text/javascript src="{{
+  url_for('static', filename='global.js') }}"></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

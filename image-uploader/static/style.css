@@ -47,6 +47,10 @@ body {
 #footer a {
   color: #fff;
 }
+
+.active {
+  background-color: #42586E;
+}
 /*** END NAV BAR & FOOTER ***/
 
 /*** CONTENT ***/
