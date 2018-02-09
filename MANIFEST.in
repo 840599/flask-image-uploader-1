@@ -1,2 +1,3 @@
-graft flaskr/templates
-graft flaskr/static
+graft image-uploader/templates
+graft image-uploader/static
+graft image-uploader/uploads

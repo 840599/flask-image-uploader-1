@@ -1,4 +1,7 @@
-env-img-uploader/*
+# Virtual env for testing the app
+env-img-uploader/ 
+# Where session files are stored (like upload items)
+instance/ 
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
