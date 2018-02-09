@@ -1,6 +1,6 @@
 import os, random
 from flask import Flask, url_for, render_template, redirect, \
-                request, send_from_directory, flash
+                request, send_from_directory, flash, jsonify
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = 'uploads/'
@@ -39,6 +39,10 @@ def uploaded_file(filename):
                             app.config['UPLOAD_FOLDER']), filename)
 
 @app.route('/uploads/get/random')
+def getJSONRandomImage():
+    filename = getRandomImage()
+    return jsonify( filename )
+
 def getRandomImage():
     upload_path = os.path.join(app.instance_path,
                     app.config['UPLOAD_FOLDER'])
@@ -59,3 +63,7 @@ def save_file(file, filename):
 def allowed_file(filename):
     return '.' in filename and \
             filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.context_processor
+def inject_debug():
+    return dict(debug=app.debug)

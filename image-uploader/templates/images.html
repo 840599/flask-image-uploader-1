@@ -10,3 +10,8 @@
     {% endif %}
   </div>
 {% endblock %}
+
+{% block scripts %}
+  <script type=text/javascript src="{{
+  url_for('static', filename='images.js') }}"></script>
+{% endblock %}
