@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>{% block title %}{% endblock %} - Image Uploader</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css') }}" />
   <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}"/ />
 </head>
 
@@ -32,13 +33,13 @@
   </script>
   {% if debug %}
   <script type=text/javascript src="{{
-  url_for('static', filename='jquery-3.3.1.js') }}"></script>
+  url_for('static', filename='js/jquery-3.3.1.js') }}"></script>
   {% else %}
   <script type=text/javascript src="{{
-  url_for('static', filename='jquery-3.3.1.min.js') }}"></script>
+  url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
   {% endif %}
   <script type=text/javascript src="{{
-  url_for('static', filename='global.js') }}"></script>
+  url_for('static', filename='js/global.js') }}"></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

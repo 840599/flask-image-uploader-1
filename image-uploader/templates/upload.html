@@ -2,10 +2,18 @@
 {% block title %}Upload{% endblock %}
 {% block content %}
   <h1>Upload a new image</h1>
-  <form method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-        <br/><br/>
-         <input type=submit value=Upload>
-    </form>
+  <form id="uploadfile" name="uploadfile" method=post enctype=multipart/form-data>
+      <div class="button-file">
+        <input id="input-file" class="button-file-input" type=file name=file>
+        <label class="button-file-label" for="input-file">
+          <i class="fa fa-fw fa-upload"></i>
+        </label>
+      </div>
+      <input type=submit value=Upload>
+  </form>
+{% endblock %}
+{% block scripts %}
+  <script type=text/javascript src="{{
+  url_for('static', filename='js/upload.js') }}"></script>
 {% endblock %}
 {% block pageid %}page-upload{% endblock %}
