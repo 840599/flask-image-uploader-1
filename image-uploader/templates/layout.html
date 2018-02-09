@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Uploader</title>
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+  <nav id="nav-bar">
+    <div>
+      <a href="{{ url_for('images') }}">Images</a>
+    </div>
+    <div>
+      <a href="{{ url_for('upload') }}">Upload</a>
+    </div>
+  </nav>
+
+  <div id="content">
+    {% block content %}{% endblock %}
+  </div>
+
+  <div id="footer">
+    <div>
+      Copyright © Morikko 2018
+    </div>
+  </div>
+</body>
+</html>
