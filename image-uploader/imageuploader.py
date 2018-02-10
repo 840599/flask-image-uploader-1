@@ -8,11 +8,12 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg'])
 
 app = Flask(__name__)
 app.config.from_object('image-uploader.default_settings')
-app.config.from_envvar('SETTINGS', silent=True)
+
+if os.environ.get('SECRET_KEY'):
+    app.secret_key = os.environ.get('SECRET_KEY')
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 3 * 1024 * 1024
-
 
 @app.route("/")
 def images():
