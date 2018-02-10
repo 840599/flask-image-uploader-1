@@ -79,3 +79,7 @@ def page_not_found(error):
     error_title = error[0]
     error_message = error[1]
     return render_template('error.html', error_title=error_title, error_message=error_message), 404
+
+
+if __name__ == "__main__":
+    app.run()
