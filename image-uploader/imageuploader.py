@@ -85,6 +85,11 @@ def page_not_found(error):
     error_message = error[1]
     return render_template('error.html', error_title=error_title, error_message=error_message), 404
 
+@app.errorhandler(413)
+def request_entity_too_large(error):
+    return render_template('error.html', error_title='File too large', error_message='Files to upload should not exceed 3MB.'), 413
+
+
 
 if __name__ == "__main__":
     app.run()
