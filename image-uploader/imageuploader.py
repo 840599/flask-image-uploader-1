@@ -11,7 +11,7 @@ app.config.from_object('image-uploader.default_settings')
 app.config.from_envvar('SETTINGS', silent=True)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
+app.config['MAX_CONTENT_LENGTH'] = 3 * 1024 * 1024
 
 
 @app.route("/")
@@ -20,19 +20,24 @@ def images():
 
 @app.route("/upload", methods=['GET', 'POST'])
 def upload():
+    error = None
+    msg = None
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            save_file(file, filename)
-            return redirect(url_for('uploaded_file', filename=filename))
-    return render_template('upload.html')
+            error = 'No file part'
+        else:
+            file = request.files['file']
+            if file.filename == '':
+                error = 'No selected file', 'error'
+            else:
+                if file and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    save_file(file, filename)
+                    msg = 'File uploaded!'
+                else:
+                    error = 'The file is not accepted, only .png and .jpg'
+
+    return render_template('upload.html', error=error, msg=msg)
 
 
 @app.route('/uploads/<filename>')

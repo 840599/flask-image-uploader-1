@@ -11,6 +11,12 @@
       </div>
       <input type=submit value=Upload>
   </form>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}</p>
+  {% endif %}
+  {% if msg %}
+    <p>{{ msg }}</p>
+  {% endif %}
 {% endblock %}
 {% block scripts %}
   <script type=text/javascript src="{{
