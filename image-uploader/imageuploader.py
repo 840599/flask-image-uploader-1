@@ -49,11 +49,13 @@ def getJSONRandomImage():
 def getRandomImage():
     upload_path = os.path.join(app.instance_path,
                     app.config['UPLOAD_FOLDER'])
-    files = os.listdir(upload_path)
-    if len(files):
-        filename = files[random.randint(0,len(files)-1)]
-    else:
-        filename = ""
+    filename = ""
+
+    if os.path.exists(upload_path):
+        files = os.listdir(upload_path)
+        if len(files):
+            filename = files[random.randint(0,len(files)-1)]
+
     return url_for('uploaded_file', filename=filename )
 
 def save_file(file, filename):
