@@ -9,7 +9,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg'])
 app = Flask(__name__)
 app.config.from_object('image-uploader.default_settings')
 
-if os.environ.get('SECRET_KEY'):
+if os.environ.get('j'):
     app.secret_key = os.environ.get('SECRET_KEY')
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
